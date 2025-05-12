@@ -1,0 +1,51 @@
+import random
+
+def rpg_game():
+    print("🏰 Welcome to the Text-Based RPG Adventure!")
+    player_health = 100
+    monster_health = 80
+
+    while True:
+        print("\n🧍 Your HP:", player_health)
+        print("👹 Monster HP:", monster_health)
+        print("\nChoose an action:")
+        print("1. ⚔️ Attack")
+        print("2. 💖 Heal")
+        print("3. 🏃 Run")
+
+        choice = input(">> ")
+
+        if choice == '1':
+            damage = random.randint(10, 25)
+            monster_health -= damage
+            print(f"\nYou attack the monster and deal {damage} damage!")
+
+        elif choice == '2':
+            heal = random.randint(15, 30)
+            player_health += heal
+            print(f"\nYou heal yourself for {heal} HP.")
+
+        elif choice == '3':
+            print("\nYou ran away! Game Over.")
+            break
+
+        else:
+            print("\nInvalid choice!")
+            continue
+
+        # Monster attacks back
+        if monster_health > 0:
+            monster_attack = random.randint(5, 20)
+            player_health -= monster_attack
+            print(f"The monster hits back and deals {monster_attack} damage!")
+
+        # Check end conditions
+        if player_health <= 0:
+            print("\n💀 You were defeated! Game Over.")
+            break
+        elif monster_health <= 0:
+            print("\n🎉 You defeated the monster! Victory is yours!")
+            break
+
+# Start the game
+rpg_game()
